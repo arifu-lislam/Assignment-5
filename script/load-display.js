@@ -4,6 +4,19 @@ const loadLesson = () => {
     .then((data) => displayLesson(data.data));
 };
 
+const loadWordDetails = async (id) => {
+  let url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
+  //   console.log(url);
+  const res = await fetch(url);
+  const details = await res.json();
+  displayWordDetails(details.data);
+};
+displayWordDetails = (word) => {
+  const detailsBox = document.getElementById("details-container");
+  detailsBox.innerHTML = "i am from js";
+  document.getElementById("my_modal_5").showModal();
+};
+
 // {
 //     "id": 1,
 //     "title": "Fix navigation menu on mobile devices",
@@ -26,7 +39,7 @@ const displayLesson = (issues) => {
   issueContainer.innerHTML = "";
   // 2. get into every lesson
   issues.forEach((issue) => {
-    console.log(issue);
+    // console.log(issue);
     // 3.create element
     const card = document.createElement("div");
     card.innerHTML = `
@@ -35,7 +48,7 @@ const displayLesson = (issues) => {
           >
             <div class="flex justify-between">
               <img src="./assets/Open-Status.png" alt="" />
-              <button
+              <button onclick="loadWordDetails(${issue.id})"
                 class="btn btn-primary rounded-full bg-[#FEECEC] text-red-500 hover:bg-[#FEECEC80]"
               >
                 ${issue.priority}
