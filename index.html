@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Github Issue Tracker</title>
+
+    <!-- daisy + tailwind -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- font awesome cdn -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- google font geist -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        font-family: "Geist", sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-base-200 min-h-screen">
+    <section class="login-class min-h-screen max-w-md bg-white mx-auto">
+      <div class="logo-section text-center space-y-6 mb-5">
+        <img class="mx-auto pt-7" src="./assets/github-logo.png" alt="" />
+        <h1 class="text-4xl font-bold">GitHub Issues Tracker</h1>
+        <p class="text-2xl text-gray-500">Sign in to manage your issues</p>
+      </div>
+
+      <div class="input-section mt-6">
+        <div
+          class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl mx-auto rounded-xl"
+        >
+          <div class="card-body">
+            <fieldset class="fieldset">
+              <label class="label text-neutral font-bold">Username</label>
+              <input
+                id="inputText"
+                type="email"
+                maxlength="5"
+                class="input rounded-full"
+                placeholder="Enter Username"
+              />
+              <label class="label text-neutral font-bold">Password</label>
+              <input
+                id="inputPassword"
+                type="password"
+                maxlength="8"
+                class="input rounded-full"
+                placeholder="Password"
+              />
+              <div><a class="link link-hover">Forgot password?</a></div>
+              <button id="logBtn" class="btn btn-primary mt-4 rounded-full">
+                Sign in
+              </button>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="script/script.js"></script>
+  </body>
+</html>
