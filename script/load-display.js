@@ -169,7 +169,7 @@ document.getElementById("btn-search").addEventListener("click", () => {
   )
     .then((res) => res.json())
     .then((data) => {
-      const allWords = data.data;
+      const allWords = data;
       console.log(allWords);
     });
 });
