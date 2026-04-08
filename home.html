@@ -43,16 +43,20 @@
             ><i class="fa-brands fa-github"></i>GitHub Issues Tracker</a
           >
         </div>
-        <div class="flex gap-2">
-          <input
-            type="text"
-            placeholder="Search"
-            class="input input-bordered w-24 md:w-auto"
-          />
-
-          <div class="">
-            <button class="btn btn-primary">
-              <i class="fa-solid fa-plus"></i>New Issue
+        <div class="search">
+          <div class="join">
+            <div>
+              <label class="input validator join-item">
+                <input
+                  id="input-search"
+                  type="text"
+                  placeholder="Search issues"
+                  required
+                />
+              </label>
+            </div>
+            <button id="btn-search" class="btn btn-primary join-item">
+              Search
             </button>
           </div>
         </div>
