@@ -6,19 +6,22 @@ const createElement = (arr) => {
 };
 
 const manageSpinner = (status) => {
-  if ((status = true)) {
+  if (status === true) {
     document.getElementById("spinner").classList.remove("hidden");
     document.getElementById("issue-container").classList.add("hidden");
   } else {
-    document.getElementById("issue-container").classList.remove("hidden");
     document.getElementById("spinner").classList.add("hidden");
+    document.getElementById("issue-container").classList.remove("hidden");
   }
 };
 const loadLesson = () => {
-  // manageSpinner(true);
+  manageSpinner(true);
   fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
     .then((res) => res.json())
-    .then((data) => displayLesson(data.data));
+    .then((data) => {
+      allIssues = data.data;
+      displayLesson(allIssues);
+    });
 };
 
 // {
@@ -143,10 +146,14 @@ const displayLesson = (issues) => {
               ${issue.description}
             </p>
             <div class = "flex gap-3">${createElement(issue.labels)} </div>
+            
             <hr class="border-gray-300" />
-            <div class="text-gray-500">
+            <div class="text-gray-500 flex gap-5">
               <p>#1 by john_doe</p>
               <p>1/15/2025</p>
+              <div>
+              <span>${issue.status}</span>
+              </div>
             </div>
           </div>
     
@@ -155,10 +162,11 @@ const displayLesson = (issues) => {
     // 4.append into container
     issueContainer.appendChild(card);
   });
-  // manageSpinner(false);
+  manageSpinner(false);
 };
 loadLesson();
 
+// search function implementation
 document.getElementById("btn-search").addEventListener("click", () => {
   const input = document.getElementById("input-search");
   const searchValue = input.value.trim().toLowerCase();
@@ -179,8 +187,19 @@ document.getElementById("btn-search").addEventListener("click", () => {
     });
 });
 
+// filter function
+const filterIssues = (status) => {
+  if (status === "all") {
+    displayLesson(allIssues);
+  } else {
+    const filtered = allIssues.filter((item) => item.status === status);
+    displayLesson(filtered);
+  }
+};
+
 // 3 button filtering
 let currentTab = "all";
+let allIssues = [];
 const tabActive = [
   "bg-blue-600",
   "border-white",
@@ -202,5 +221,8 @@ function switchTab(tab) {
       tabName.classList.add(...tabInActive);
     }
   }
+  filterIssues(tab);
 }
 switchTab(currentTab);
+loadLesson();
+switchTab("all");
