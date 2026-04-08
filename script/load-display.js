@@ -165,11 +165,17 @@ document.getElementById("btn-search").addEventListener("click", () => {
   const searchValue = input.value.trim().toLowerCase();
   console.log(searchValue);
   fetch(
-    " https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=notifications",
+    `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`,
   )
     .then((res) => res.json())
     .then((data) => {
-      const allWords = data;
+      const allWords = data.data;
       console.log(allWords);
+      const filterWords = allWords.filter(
+        (item) =>
+          item.description.toLowerCase().includes(searchValue) ||
+          item.title.toLowerCase().includes(searchValue),
+      );
+      displayLesson(filterWords);
     });
 });
