@@ -178,3 +178,29 @@ document.getElementById("btn-search").addEventListener("click", () => {
       displayLesson(filterWords);
     });
 });
+
+// 3 button filtering
+let currentTab = "all";
+const tabActive = [
+  "bg-blue-600",
+  "border-white",
+  "w-[100px]",
+  "text-white",
+  "rounded-xl",
+];
+const tabInActive = ["btn", "btn-active", "w-[100px]"];
+function switchTab(tab) {
+  console.log(tab);
+  const tabs = ["all", "open", "closed"];
+  for (const t of tabs) {
+    const tabName = document.getElementById("tab-" + t);
+    if (t === tab) {
+      tabName.classList.remove(...tabInActive);
+      tabName.classList.add(...tabActive);
+    } else {
+      tabName.classList.remove(...tabActive);
+      tabName.classList.add(...tabInActive);
+    }
+  }
+}
+switchTab(currentTab);

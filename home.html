@@ -67,15 +67,24 @@
         <section class="button-section bg-white h-20 pt-5 pl-3.5 rounded-xl">
           <div class="flex gap-4 w-full">
             <button
-              id="all-filter-btn"
-              class="btn btn-active w-[100px] bg-blue-700 text-white"
+              onclick="switchTab('all')"
+              id="tab-all"
+              class="btn btn-active w-[100px]"
             >
               All
             </button>
-            <button id="open-filter-btn" class="btn btn-active w-[100px]">
+            <button
+              onclick="switchTab('open')"
+              id="tab-open"
+              class="btn btn-active w-[100px]"
+            >
               Open
             </button>
-            <button id="closed-filter-btn" class="btn btn-active w-[100px]">
+            <button
+              onclick="switchTab('closed')"
+              id="tab-closed"
+              class="btn btn-active w-[100px]"
+            >
               Closed
             </button>
           </div>
@@ -135,5 +144,6 @@
     </main>
 
     <script src="script/load-display.js"></script>
+    <script src="script/index.js"></script>
   </body>
 </html>
