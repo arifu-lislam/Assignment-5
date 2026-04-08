@@ -1,8 +1,41 @@
+const createElement = (arr) => {
+  const htmlElements = arr.map(
+    (el) => `<span class = "btn rounded-full ">${el}</span>`,
+  );
+  return htmlElements.join(" ");
+};
+
+const manageSpinner = (status) => {
+  if ((status = true)) {
+    document.getElementById("spinner").classList.remove("hidden");
+    document.getElementById("issue-container").classList.add("hidden");
+  } else {
+    document.getElementById("issue-container").classList.remove("hidden");
+    document.getElementById("spinner").classList.add("hidden");
+  }
+};
 const loadLesson = () => {
+  // manageSpinner(true);
   fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
     .then((res) => res.json())
     .then((data) => displayLesson(data.data));
 };
+
+// {
+//     "id": 1,
+//     "title": "Fix navigation menu on mobile devices",
+//     "description": "The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior.",
+//     "status": "open",
+//     "labels": [
+//         "bug",
+//         "help wanted"
+//     ],
+//     "priority": "high",
+//     "author": "john_doe",
+//     "assignee": "jane_smith",
+//     "createdAt": "2024-01-15T10:30:00Z",
+//     "updatedAt": "2024-01-15T10:30:00Z"
+// }
 
 const loadWordDetails = async (id) => {
   let url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
@@ -12,8 +45,58 @@ const loadWordDetails = async (id) => {
   displayWordDetails(details.data);
 };
 displayWordDetails = (word) => {
+  console.log(word);
   const detailsBox = document.getElementById("details-container");
-  detailsBox.innerHTML = "i am from js";
+  detailsBox.innerHTML = `
+   
+  <div class="test bg-white pt-5 pl-3.5 rounded-xl space-y-5">
+          <h2 class="text-2xl font-bold">
+            ${word.title}
+          </h2>
+          <div id="" class="flex gap-4 items-center">
+            <button
+              class="btn btn-primary bg-[#00A96E] rounded-full text-white"
+            >
+              Opened
+            </button>
+            <p class="text-gray-400">
+              <span class="h-1 w-1 rounded-full bg-black inline-block "></span>
+              Opened by ${word.author}
+            </p>
+            <p class="text-gray-400">
+              <span class="h-1 w-1 rounded-full bg-black inline-block"></span>
+              ${word.updatedAt}
+            </p>
+          </div>
+          <div class="flex gap-5">
+            <button
+              class="btn btn-primary rounded-full bg-[#FEECEC] text-red-500"
+            >
+              BUG
+            </button>
+            <button
+              class="btn btn-primary rounded-full bg-[#FDE68A] text-[#D97706]"
+            >
+              HELP WANTED
+            </button>
+          </div>
+          <p class="text-gray-400">
+            The navigation menu doesn't collapse properly on mobile devices.
+            Need to fix the responsive behavior.
+          </p>
+          <div
+            class="flex justify-between bg-base-200 h-20 pt-5 pl-3.5 rounded-xl"
+          >
+            <p class="text-gray-400">Assignee:<br /><span class="text-black text-2xl font-bold">${word.assignee}</span></p>
+            <p class="text-gray-400">
+              Priority: <br />
+              <span class="bg-red-500 rounded-xl px-5 py-1 text-white">${word.priority}</span> 
+            </p>
+          </div>
+        </div>
+
+
+  `;
   document.getElementById("my_modal_5").showModal();
 };
 
@@ -60,18 +143,7 @@ const displayLesson = (issues) => {
             <p class="text-gray-400">
               ${issue.description}
             </p>
-            <div class="flex justify-between">
-              <button
-                class="btn btn-primary rounded-full bg-[#FEECEC] text-red-500"
-              >
-                BUG
-              </button>
-              <button
-                class="btn btn-primary rounded-full bg-[#FDE68A] text-[#D97706]"
-              >
-                HELP WANTED
-              </button>
-            </div>
+            <div class = "flex gap-3">${createElement(issue.labels)} </div>
             <hr class="border-gray-300" />
             <div class="text-gray-500">
               <p>#1 by john_doe</p>
@@ -84,5 +156,6 @@ const displayLesson = (issues) => {
     // 4.append into container
     issueContainer.appendChild(card);
   });
+  // manageSpinner(false);
 };
 loadLesson();
