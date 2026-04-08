@@ -1,6 +1,6 @@
 const createElement = (arr) => {
   const htmlElements = arr.map(
-    (el) => `<span class = "btn rounded-full ">${el}</span>`,
+    (el) => `<span class = "btn rounded-full bg-amber-200">${el}</span>`,
   );
   return htmlElements.join(" ");
 };
@@ -81,8 +81,7 @@ displayWordDetails = (word) => {
             </button>
           </div>
           <p class="text-gray-400">
-            The navigation menu doesn't collapse properly on mobile devices.
-            Need to fix the responsive behavior.
+            ${word.description}
           </p>
           <div
             class="flex justify-between bg-base-200 h-20 pt-5 pl-3.5 rounded-xl"
@@ -127,7 +126,7 @@ const displayLesson = (issues) => {
     const card = document.createElement("div");
     card.innerHTML = `
      <div
-            class="card-banner bg-white rounded-xl shadow-sm py-5 px-5 space-y-4 mt-4"
+            class="card-banner bg-white rounded-xl shadow-sm py-5 px-5 space-y-4 mt-4 flex flex-col h-full"
           >
             <div class="flex justify-between">
               <img src="./assets/Open-Status.png" alt="" />
