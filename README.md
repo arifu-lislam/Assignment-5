@@ -24,3 +24,4 @@ array.filter((variable) => condition)
    const variable_name = parameter => x \* x; //execute with one parameter
 
 5. What are template literals?
+   To create dynamic html by using variable and expression within ${``} is called template literal or template string or dynamic string or backtic.it support multiline.ternary operator is using within template string.
