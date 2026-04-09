@@ -11,7 +11,7 @@ const btnContainer = document
 
     if (textContainer == "admin" && passwordContainer == "admin123") {
       alert("login alert successful");
-      window.location.assign("/home.html");
+      window.location.assign("home.html");
     } else {
       alert("login failed");
     }
